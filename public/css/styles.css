@@ -51,14 +51,10 @@ h1, h2 {
 }
 
 .header-nav {
-  font-family: var(--font-sans);
-  font-size: 20px;
   background-color: var(--color-border);
-  color: var(--color-light);
 }
 
 .header-nav ul {
-
   padding: 0px;
   list-style-type: none;
   /* mobile screen view */
@@ -68,6 +64,17 @@ h1, h2 {
 
 .header-nav ul li {
   padding: 10px;
+}
+
+.header-nav ul li:hover {
+  background-color: var(--color-contrast);
+}
+
+.header-nav ul li a {
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 20px;
+  color: var(--color-light);
 }
 
 #hero-container {
