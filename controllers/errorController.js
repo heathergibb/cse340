@@ -1,5 +1,5 @@
 exports.throwError = (req, res, next) => {
-    const error = new Error("THIS IS A TEST!", {cause: "Congratulations! You've successfully tested the Error Link functionality!"})
+    const error = new Error("THIS IS A TEST!")
     error.status = 500
     throw error
 }
