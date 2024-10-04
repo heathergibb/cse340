@@ -266,6 +266,10 @@ h2 {
   font-weight: bold;
 }
 
+#error-page {
+  font-family: var(--font-serif);  
+}
+
 footer {
   font-family: var(--font-sans);
   font-size: 16px;

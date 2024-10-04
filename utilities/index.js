@@ -76,6 +76,17 @@ Util.buildClassificationGrid = async function(data){
     return grid
   }
 
+  Util.buildErrorMessage = async function(error) {
+    let message
+    message = `<div id="error-page">`
+    message += `<h2>${error.message}</h2>`
+    message += `<p>${error.cause}</p>`
+    message += `<img src="images/site/error.webp" width="600" height="400" loading="lazy" alt="Photo of 1 + 1 = 3 on chalkboard">`
+    message += `<div><a href="https://www.pexels.com/photo/1-1-3-text-on-black-chalkboard-374918/" target="_blank" id="photo-source">Photo by George Becker</a></div>`
+    message += `</div>`
+    return message
+  }
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
