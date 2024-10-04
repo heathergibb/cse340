@@ -7,7 +7,7 @@
                 }
             },
             "previewLimit": 50,
-            // "server": "localhost",
+            "server": "localhost",
             "driver": "PostgreSQL",
             "name": "render.com",
             "database": "hrgibb",
