@@ -179,6 +179,7 @@ h2 {
 
 /* Type Page */
 #inv-display {
+  padding: 0px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -321,7 +322,7 @@ footer {
   }
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: 460px) {
   .header-nav ul {
     display: flex;
     justify-content: space-evenly;
