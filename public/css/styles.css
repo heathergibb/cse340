@@ -1,6 +1,7 @@
 :root {
   --color-light: white;
-  --color-border: rgb(95, 100, 109);
+  --color-border: rgb(100, 100, 109);
+  --color-button: rgb(205, 221, 226);
   --color-contrast: rgb(21, 99, 122);
   --color-contrast-15: rgba(21, 99, 122 ,0.15);
   --color-contrast-25: rgba(21, 99, 122 ,0.25);
@@ -31,6 +32,7 @@ h2 {
   font-family: var(--font-serif);
   font-weight: bold;
   font-size: 24px;
+  margin-top: 0px;
 }
 
 .siteName {
@@ -92,16 +94,16 @@ h2 {
 #hero-img {
   width: 100%;
   height: auto;
+  padding: 20px;
 }
 
 #hero-detail {
-  position: absolute;
-  top: 0;
-  left: 0;
+  text-align: center;
   background: var(--color-contrast-15);
   color: var(--color-font);
   padding: 10px;
   border-radius: 10px;
+  margin: 20px;
 }
  
 .hero-detail-title {
@@ -198,7 +200,7 @@ h2 {
   list-style: none;
 }
 
-.car-card, .login-card {
+.car-card, .form-card {
   font-size: 20px;
   padding: 20px;
   background-color: var(--color-contrast);
@@ -212,7 +214,7 @@ h2 {
   align-items: center;
   height: 100%;
   grid-row: 1;
-  padding: 20px;
+  padding-bottom: 20px;
 }
 
 .car-card hr {
@@ -237,10 +239,12 @@ h2 {
 /* Vehicle Details Page */
 #details-container {
   display: block;
+  margin: 20px;
 }
 
 #vehicle-img-large {
   grid-column: 1/2;
+  width: 100%;
   max-width: 100%;
   height: auto;
 }
@@ -285,7 +289,7 @@ h2 {
 
 /* Login Page */
 
-.login-card {
+.form-card {
   display: block;
   margin: 10px auto;
   width: 400px;
@@ -293,7 +297,7 @@ h2 {
   font-family: var(--font-sans);
 }
 
-.login-input {
+.form-input {
   width: 100%;
   font-size: 18px;
   padding: 5px;
@@ -306,19 +310,37 @@ h2 {
 
 .form-button {
   margin: 10px auto;
-  padding: 10px 20px;
+  padding: 5px 40px;
   font-family: var(--font-sans);
   font-weight: bold;
   font-size: 20px;
   border-radius: 10px;
-  background-color: var(--color-light);
-  color: var(--color-contrast);
+  background-color: var(--color-button);
+  color: var(--color-font);
   display: block;
   cursor: pointer;
 }
 
 #sign-up a {
   color: var(--color-light);
+}
+
+/* Register Page */
+
+#password-note {
+  /* font-family: var(--font-serif); */
+  font-size: 18px;
+  font-weight: bold;
+  background-color: var(--color-button);
+  color: var(--color-font);
+  padding-left: 20px;
+}
+
+#password-note li {
+  padding: 0px;
+  font-size: 16px;
+  margin-left: 20px;
+  font-weight: normal;
 }
 
 footer {
@@ -360,6 +382,12 @@ footer {
     margin: 10px auto;
     padding: 10px;
     max-width: 1200px;
+  }
+
+  #hero-detail {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   #lower-section {

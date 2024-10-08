@@ -54,7 +54,7 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
-//Login route
+//Account routes
 app.use("/account", accountRoute)
 app.use(errorRoute)
 // Error Handling Middleware

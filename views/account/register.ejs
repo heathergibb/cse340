@@ -1,0 +1,36 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+    <%- messages() %>
+
+    <%- register %>
+
+    <!-- <div class="form-card">
+        <form id="register-form">
+            <h2>Create an Account</h2>
+            <p>*All fields are required</p>
+            <label>First Name:
+                <input type="text" name="account_firstname" class="form-input">
+              </label><br>
+            <label>Last Name:
+                <input type="text" name="account_lastname" class="form-input">
+            </label><br>
+            <label>Email:
+              <input type="email" name="account_email" class="form-input">
+            </label><br>
+            <label>Password:
+              <input type="password" name="account_password" class="form-input">
+            </label><br>
+            <ul id="password-note">
+                Password must be:
+                <li>12 characters in length, min</li>
+                <li>contain at least 1 capital letter</li>
+                <li>contain at least 1 number</li>
+                <li>contain at least 1 special character</li>
+            </ul>
+            <input type="submit" value="Register" class="form-button" title="Click here to submit registration">
+        </form>
+    </div> -->
