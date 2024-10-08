@@ -86,57 +86,6 @@ Util.buildClassificationGrid = async function(data){
     return message
   }
 
-  Util.buildLoginForm = function() {
-    let form 
-    form = `<div class="form-card">
-        <form id="login-form">
-            <label>Email:
-              <input type="email" name="account_email" class="form-input">
-            </label><br>
-            <label>Password:
-              <input type="password" name="account_password" class="form-input">
-            </label><br>
-            <input type="submit" value="Login" class="form-button" title="Click here to login">
-        </form>
-        <div id="sign-up">
-            <span>No account?</span>
-            <a title="Click here to sign up" href="/account/register">Sign-up</a>
-        </div>
-      </div>`
-    return form
-  }
-
-  Util.buildRegistrationForm = function () {
-    let form
-    form = `<div class="form-card">
-        <form id="register-form">
-            <h2>Create an Account</h2>
-            <p>*All fields are required</p>
-            <label>First Name:
-                <input type="text" name="account_firstname" class="form-input">
-              </label><br>
-            <label>Last Name:
-                <input type="text" name="account_lastname" class="form-input">
-            </label><br>
-            <label>Email:
-              <input type="email" name="account_email" class="form-input">
-            </label><br>
-            <label>Password:
-              <input type="password" name="account_password" class="form-input">
-            </label><br>
-            <ul id="password-note">
-                Password must be:
-                <li>12 characters in length, min</li>
-                <li>contain at least 1 capital letter</li>
-                <li>contain at least 1 number</li>
-                <li>contain at least 1 special character</li>
-            </ul>
-            <input type="submit" value="Register" class="form-button" title="Click here to submit registration">
-        </form>
-    </div>`
-    return form;
-  }
-
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
