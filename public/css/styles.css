@@ -98,9 +98,10 @@ h2 {
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.8);
-  color: var(--color-contrast);
+  background: var(--color-contrast-15);
+  color: var(--color-font);
   padding: 10px;
+  border-radius: 10px;
 }
  
 .hero-detail-title {
@@ -121,6 +122,7 @@ h2 {
   font-weight: bold;
   font-size: 20px;
   width: 100%;
+  border-radius: 10px;
   background-color: var(--color-contrast);
   color: var(--color-light);
 }
@@ -165,6 +167,7 @@ h2 {
 .upgrade-img-box {
   background-color: var(--color-contrast);
   border: 2px solid var(--color-border);
+  border-radius: 10px;
   width: 100%;
   height: 100px;
   align-content: center;
@@ -188,14 +191,17 @@ h2 {
 .car-card {
   width: 300px;
   margin: 10px;
-  padding: 20px;
   text-align: center;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 150px 1fr;
-  background-color: var(--color-contrast);
   list-style: none;
-  font-size: 18px;
+}
+
+.car-card, .login-card {
+  font-size: 20px;
+  padding: 20px;
+  background-color: var(--color-contrast);
   color: var(--color-light);
   border-radius: 10px;
 }
@@ -216,7 +222,7 @@ h2 {
 }
 
 .car-card-heading {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .car-card-heading a {
@@ -241,7 +247,7 @@ h2 {
 
 #vehicle-details {
   grid-column: 2/3;
-  font-size: 18px;
+  font-size: 20px;
   font-family: var(--font-sans);
 }
 
@@ -277,10 +283,70 @@ h2 {
   height: auto;
 }
 
+/* Login Page */
+
+.login-card {
+  display: block;
+  margin: 10px auto;
+  width: 400px;
+  max-width: 100%;
+  font-family: var(--font-sans);
+}
+
+.login-input {
+  width: 100%;
+  font-size: 18px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+#sign-up {
+  text-align: center;
+}
+
+.form-button {
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-family: var(--font-sans);
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: var(--color-light);
+  color: var(--color-contrast);
+  display: block;
+  cursor: pointer;
+}
+
+#sign-up a {
+  color: var(--color-light);
+}
+
 footer {
   font-family: var(--font-sans);
   font-size: 16px;
 }
+
+/* Flash Messages */
+
+.notice, .error {
+  font-family: var(--font-sans);
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  list-style-type: none;
+  display: inline-block;
+  justify-self: center;
+  padding: 0 22px;
+}
+
+.notice {
+  background-color: orange;
+}
+
+.error {
+  background-color: red;
+} 
 
 @media screen and (min-width: 780px) {
   body {

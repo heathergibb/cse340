@@ -86,6 +86,24 @@ Util.buildClassificationGrid = async function(data){
     return message
   }
 
+  Util.buildLoginForm = function() {
+    let form 
+    form = `<div class="login-card">
+        <form id="login-form">
+            <label for="email">Email:</label><br>
+            <input type="email" id="login-username" name="username" class="login-input"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="login-password" name="password" class="login-input"><br>
+            <input type="submit" value="Login" class="form-button" title="Click here to login">
+        </form>
+        <div id="sign-up">
+            <span>No account?</span>
+            <a title="Click here to sign up" href="/account/login/#">Sign-up</a>
+        </div>
+      </div>`
+    return form
+  }
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
