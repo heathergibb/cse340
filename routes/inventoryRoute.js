@@ -27,4 +27,13 @@ router.post(
     invValidate.checkClassificationData,
     utilities.handleErrors(invController.addClassification)
 )
+
+// add new inventory
+router.post(
+    "/add-inventory",
+    invValidate.inventoryRules(),
+    invValidate.checkNewInventoryData,
+    utilities.handleErrors(invController.addInventory)
+)
+
 module.exports = router;
