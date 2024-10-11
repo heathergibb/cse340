@@ -12,7 +12,7 @@
             "name": "render.com",
             "database": "hrgibb",
             "username": "hrgibb",
-            "connectString": "postgresql://hrgibb:fVBUZRf9KP8LhFerfcOotmVKL0L9CNoY@dpg-crqu7udumphs73d3msa0-a.oregon-postgres.render.com/hrgibb"
+            "connectString": "postgresql://hrgibb:fVBUZRf9KP8LhFerfcOotmVKL0L9CNoY@dpg-crqu7udumphs73d3msa0-a.oregon-postgres.render.com/hrgibb?sslmode=require"
         }
     ]
 }
