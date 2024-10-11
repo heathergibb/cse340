@@ -112,7 +112,7 @@ invCont.addClassification = async function(req, res, next) {
 invCont.addInventory = async function(req, res, next) { 
   let nav = await utilities.getNav()
   const { classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color } = req.body
-  
+
   const addResult = await invModel.addInventory(classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color)
 
   if (addResult) {    

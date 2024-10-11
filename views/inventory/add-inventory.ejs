@@ -15,7 +15,7 @@
       <% } %>
 
       <div class="form-card">
-        <form id="inventory-form" action="/inv/add-inventory" method="post">
+        <form id="inventory-form" action="/inv/add-inventory" method="POST">
           <p>*All fields are required</p>
           
           <label>Classification:
@@ -30,8 +30,8 @@
             required pattern=".{3,50}" placeholder="Min of 3 characters" value="<%- locals.inv_model %>">
           </label>
           <label>Description:
-            <input type="text" name="inv_description" class="form-input" 
-            required value="<%- locals.inv_description %>">
+            <textarea name="inv_description" class="form-input" 
+              required placeholder="Describe the car..." ><%- locals.inv_description %></textarea>
           </label>
           <label>Image Path:
             <input type="text" name="inv_image" class="form-input" 
@@ -43,16 +43,16 @@
           </label>
           <label>Price:
             <input type="number" name="inv_price" class="form-input" 
-            required pattern="^[0-9]{1,9}(\.[0-9]{1,9})?$" maxlength="9" 
-            placeholder="decimal or integer" value="<%= locals.inv_price %>">
+            required step="1" min="0"
+            placeholder="whole number" value="<%= locals.inv_price %>">
           </label>
           <label>Year:
             <input type="number" name="inv_year" class="form-input" 
-            required pattern="^\d{4}$" maxlength="4" placeholder="4-digit year" value="<%= locals.inv_year %>">
+            required min="1000" max="9999" placeholder="4-digit year" value="<%= locals.inv_year %>">
           </label>
           <label>Miles:
             <input type="number" name="inv_miles" class="form-input" 
-            required pattern="^[0-9]+$" placeholder="digits only" value="<%= locals.inv_miles %>">
+            required min="1" placeholder="digits only" value="<%= locals.inv_miles %>">
           </label>
           <label>Color:
             <input type="text" name="inv_color" class="form-input" 

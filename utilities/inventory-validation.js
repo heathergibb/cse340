@@ -24,7 +24,6 @@ validate.classificationRules = () => {
 * ********************************* */
 
 validate.inventoryRules = () => {
-  
     return [
         body("classification_id")
         .trim()
@@ -72,7 +71,7 @@ validate.inventoryRules = () => {
         .withMessage("Price must be a valid number.")
         .bail()
         .isInt({gt: 0})
-        .withMessage("Price must be positive integer. (digits only)")
+        .withMessage("Price must be positive whole number. (digits only)")
         .isLength({ max: 9 })
         .withMessage("Price cannot exceed 9 digits. (digits only)"),
         
@@ -127,7 +126,7 @@ validate.checkNewInventoryData = async (req, res, next) => {
     if (!errors.isEmpty()) {
         try {
         let nav = await utilities.getNav()
-        const classList = await utilities.buildClassificationList()
+        const classList = await utilities.buildClassificationList(classification_id)
         res.render("./inventory/add-inventory", {
             errors,
             title: "Add New Inventory", 
@@ -144,12 +143,13 @@ validate.checkNewInventoryData = async (req, res, next) => {
             inv_miles,
             inv_color,
         })
+        return
         } catch (err) {
             console.error("Error rendering page:", err)
             res.status(500).send("Server error while rendering the page.")
         }
-        next()
     }
+    next()
 }
 
 module.exports = validate

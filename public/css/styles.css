@@ -297,11 +297,24 @@ h2 {
   font-family: var(--font-sans);
 }
 
-.form-input {
+.form-input, #classificationList {
   width: 100%;
   font-size: 18px;
   padding: 5px;
   margin-bottom: 10px;
+  font-family: var(--font-sans);
+}
+
+#inventory-form textarea {
+  height: 100px;
+}
+
+.form-input:focus:valid {
+  background-color: rgb(171, 241, 214);
+}
+
+.form-input:focus:invalid {
+  background-color: rgb(221, 166, 166);
 }
 
 #sign-up {
