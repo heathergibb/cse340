@@ -50,7 +50,7 @@ invCont.buildManagement = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build management view
+ *  Build Add Classification view
  * ************************** */
 invCont.buildAddClassification = async function (req, res, next) {
   let nav = await utilities.getNav()  
@@ -62,7 +62,7 @@ invCont.buildAddClassification = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build management view
+ *  Build Add Inventory view
  * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
   let nav = await utilities.getNav()  
@@ -72,5 +72,37 @@ invCont.buildAddInventory = async function (req, res, next) {
     errors: null,
   })
 }
+
+/* ***************************
+ *  Add New Classification
+ * ************************** */
+invCont.addClassification = async function(req, res, next) { 
+  const { classification_name } = req.body
+  
+  const addResult = await invModel.addClassification(classification_name)
+
+  if (addResult) {
+    let nav = await utilities.getNav()
+    
+    req.flash(
+      "notice",
+      `${classification_name} has been successfully added.`
+    )
+
+    res.status(201).render("./inventory/add-classification", {
+      title: "Add New Classification",
+      nav,
+      errors: null,
+    })
+  } else {
+    req.flash("notice", `Something went wrong. Failed to add ${classification_name}.`)
+    res.status(501).render("./inventory/add-classification", {
+      title: "Add New Classification",
+      nav,
+      errors: null,
+    })
+  }
+}
+
 
 module.exports = invCont

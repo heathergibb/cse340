@@ -44,14 +44,14 @@ async function loginAccount(req, res) {
         `Congratulations, login successful.`
       )
       res.status(201).render("account/login", {
-        title: "Login",
+        title: "Login Yes",
         nav,
         errors: null,
       })
     } else {
       req.flash("notice", "Sorry, the login failed.")
       res.status(501).render("account/login", {
-        title: "Login",
+        title: "Login F",
         nav,
         errors: null,
       })
