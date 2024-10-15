@@ -200,7 +200,7 @@ h2 {
   list-style: none;
 }
 
-.car-card, .form-card {
+.car-card, .form-card, .mgmt-card {
   font-size: 20px;
   padding: 20px;
   background-color: var(--color-contrast);
@@ -392,6 +392,60 @@ footer {
   color: var(--color-light);
 }
 
+.mgmt-card {
+  display: block;
+  margin: 10px auto;
+  max-width: 800px;
+  font-family: var(--font-sans);
+}
+
+#inventoryDisplay {
+  margin: 0 auto;
+}
+
+.mgmt-header {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 28px;
+}
+
+#inventoryDisplay th {
+  text-align: center;
+}
+.mgmt-card td {
+  display: block;
+  text-align: center;
+}
+
+.mgmt-label {
+  width: 100%;
+  font-size: 20px;
+  padding: 5px;
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.mgmt-card th {
+  text-align: left;
+  padding: 20px 0;
+  font-size: 22px;
+}
+
+.mgmt-button {
+  margin: 10px;
+  padding: 5px 40px;
+  text-align: center;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: var(--color-button);
+  color: var(--color-font);
+  display: block;
+  cursor: pointer;
+}
+
 /* Flash Messages */
 
 .notice, .error {
@@ -456,6 +510,17 @@ footer {
   #vehicle-details {
       margin: 0 20px;
   }
+
+  #inventoryDisplay th {
+    text-align: left;
+  }
+
+  .mgmt-tr td {
+    border-bottom: 2px solid var(--color-light);
+    display: table-cell;
+    text-align: left;
+  }
+
 }
 
 @media screen and (min-width: 460px) {

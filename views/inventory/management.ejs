@@ -19,4 +19,14 @@
             <a href="/inv/add-classification">Add New Classification</a>
             <a href="/inv/add-inventory">Add New Vehicle</a>
         </div>
+        <h2 class="mgmt-header">Manage Inventory</h2>
+        <div class="mgmt-card">
+          
+          <p class="mgmt-label">Select a classification:</p>
+          <%- classificationSelect %>
+          <table id="inventoryDisplay"></table>
+        </div>
+        <noscript>JavaScript must be enabled to use this page.</noscript>
     </div>
+
+    <script src="../../js/inventory.js"></script>

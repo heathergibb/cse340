@@ -20,6 +20,9 @@ router.get("/add-classification", utilities.handleErrors(invController.buildAddC
 // build the add inventory page
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
 
+// build the inventory list
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
 // add a new classification
 router.post(
     "/add-classification",
