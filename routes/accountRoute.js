@@ -11,6 +11,9 @@ router.get("/login", utilities.handleErrors(acctController.buildLogin))
 // build the registration form page
 router.get("/register", utilities.handleErrors(acctController.buildRegister))
 
+
+router.get("/", utilities.handleErrors(acctController.buildAccountMgmt))
+
 // register new account
 router.post(
     "/register",
@@ -24,16 +27,7 @@ router.post(
     "/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,
-    (req, res) => {
-      res.status(200).send('login process')
-    }
+    utilities.handleErrors(acctController.accountLogin)
   )
-
-// router.post(
-//     "/login",
-//     regValidate.loginRules(),
-//     regValidate.checkLoginData,
-//     utilities.handleErrors(acctController.loginAccount)
-//   )
 
 module.exports = router
