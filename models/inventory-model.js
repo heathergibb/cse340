@@ -60,7 +60,7 @@ async function addClassification(classification_name){
 }
 
 /* ***************************
- *  Add new classification
+ *  Add new inventory
  * ************************** */
 async function addInventory(classification_id,
     inv_make,
@@ -88,5 +88,45 @@ async function addInventory(classification_id,
   }
 }
 
+/* ***************************
+ *  Edit inventory
+ * ************************** */
+async function editInventory(inv_id,
+  classification_id,
+  inv_make,
+  inv_model,
+  inv_description,
+  inv_image,
+  inv_thumbnail,
+  inv_price,
+  inv_year,
+  inv_miles,
+  inv_color,)
+  {
+try {
+  const sql = "UPDATE public.inventory SET inv_make = $1, " +
+    "inv_model = $2, inv_description = $3, inv_image = $4, " +
+    "inv_thumbnail = $5, inv_price = $6, inv_year = $7, " +
+    "inv_miles = $8, inv_color = $9, classification_id = $10 " +
+    "WHERE inv_id = $11 RETURNING *"
+  const data = await pool.query(sql, [
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
+    inv_id
+  ])
+  return data.rows[0]
+} catch (error) {
+  console.error("model error: " + error)
+  return error.message
+}
+}
 
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByInvId, addClassification, addInventory, isClassificationValid };
+module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByInvId, addClassification, addInventory, editInventory, isClassificationValid };

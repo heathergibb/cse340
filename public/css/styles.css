@@ -446,6 +446,10 @@ footer {
   cursor: pointer;
 }
 
+#save-changes-btn:disabled {
+  color: grey;
+}
+
 /* Flash Messages */
 
 .notice, .error {
