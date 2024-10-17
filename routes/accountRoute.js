@@ -11,8 +11,18 @@ router.get("/login", utilities.handleErrors(acctController.buildLogin))
 // build the registration form page
 router.get("/register", utilities.handleErrors(acctController.buildRegister))
 
+// build the account management page
+router.get("/", 
+    utilities.checkLogin,
+    utilities.handleErrors(acctController.buildAccountMgmt))
 
-router.get("/", utilities.handleErrors(acctController.buildAccountMgmt))
+// create the logout path
+router.get("/logout", (req, res) => {
+    req.session.destroy(() => {
+        res.clearCookie('jwt')
+        res.redirect("/")
+    })
+})
 
 // register new account
 router.post(

@@ -34,6 +34,14 @@ app.use(session({
   name: 'sessionId',
 }))
 
+// Make user data available in all views
+app.use((req, res, next) => {
+  if (req.session.user) {
+    res.locals.user = req.session.user; 
+  }
+  next();
+});
+
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
