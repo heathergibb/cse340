@@ -16,7 +16,7 @@ async function buildLogin(req, res, next) {
     })
   }
 
-  /* ****************************************
+/* ****************************************
 *  Deliver registration view
 * *************************************** */
 async function buildRegister(req, res, next) {
@@ -28,7 +28,7 @@ async function buildRegister(req, res, next) {
     })
   }
 
- /* ****************************************
+/* ****************************************
 *  Deliver account management view
 * *************************************** */
 async function buildAccountMgmt(req, res, next) {
@@ -37,6 +37,28 @@ async function buildAccountMgmt(req, res, next) {
     title: "Account Management",
     nav,
     errors: null,
+  })
+}
+
+/* ****************************************
+*  Deliver account edit view
+* *************************************** */
+async function buildEditAccount(req, res, next) {
+  console.log("Executing buildEditAccount middleware");
+  const account_id = parseInt(req.params.account_id)
+  let nav = await utilities.getNav()
+  const userData = await accountModel.getAccountById(account_id)
+  
+  res.locals.accountData = userData; 
+
+  res.render("account/edit-account", {
+    title: "Edit Account",
+    nav,
+    errors: null,
+    account_id: userData.account_id,
+    account_firstname: userData.account_firstname,
+    account_lastname: userData.account_lastname,
+    account_email: userData.account_email,
   })
 }
 
@@ -88,6 +110,54 @@ async function registerAccount(req, res) {
     }
   }
 
+ /* ****************************************
+ *  Process edit account info
+ * ************************************ */
+async function editAccount(req, res, next) {
+  let nav = await utilities.getNav()
+  const { account_id, account_firstname, account_lastname, account_email } = req.body
+
+  const editResult = await accountModel.editAccount(account_id, account_firstname, account_lastname, account_email)
+  
+  if (editResult) {
+    // Regenerate the JWT with the new information
+    const accountData = {
+      account_id: editResult.account_id,
+      account_firstname: editResult.account_firstname,
+      account_lastname: editResult.account_lastname,
+      account_email: editResult.account_email,
+      account_type: editResult.account_type
+    };
+
+    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
+    
+    if(process.env.NODE_ENV === 'development') {
+      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+    } else {
+      res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+    }
+
+    req.flash(
+      "notice",
+      "Your account information has been successfully updated."
+    ) 
+    res.redirect("/account")
+  } else {
+    req.flash("notice", "Sorry, the update failed.")
+    res.status(501).render("account/edit-account", {
+      title: "Edit Account",
+      nav,
+      errors: null,
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+    })
+  }
+
+}
+
+
   /* ****************************************
  *  Process login request
  * ************************************ */
@@ -104,21 +174,20 @@ async function accountLogin(req, res) {
       account_email,
     })
     return
-    }
-    try {
+  }
+
+  try {
     if (await bcrypt.compare(account_password, accountData.account_password)) {
-    delete accountData.account_password
-    req.session.user = accountData //store the user data in the session
-    
-    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
-    if(process.env.NODE_ENV === 'development') {
-      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+      delete accountData.account_password
+
+      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
+      if(process.env.NODE_ENV === 'development') {
+        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
       } else {
         res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
       }
-    return res.redirect("/account/")
-   } 
-    else {
+      return res.redirect("/account")
+    } else {
       req.flash("notice", "Please check your credentials and try again.")
       res.status(400).render("account/login", {
         title: "Login",
@@ -128,8 +197,17 @@ async function accountLogin(req, res) {
       })
     }
   } catch (error) {
-   return new Error('Access Forbidden')
+    return new Error('Access Forbidden')
   }
  }
 
-  module.exports = { buildLogin, buildRegister, buildAccountMgmt, registerAccount, accountLogin }
+
+ /* ****************************************
+ *  Process logout request
+ * ************************************ */
+async function accountLogout(req, res) {
+  res.clearCookie("jwt")
+  res.redirect("/")
+}
+
+  module.exports = { buildLogin, buildRegister, buildAccountMgmt, buildEditAccount, registerAccount, accountLogin, accountLogout, editAccount }

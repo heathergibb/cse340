@@ -17,12 +17,10 @@ router.get("/",
     utilities.handleErrors(acctController.buildAccountMgmt))
 
 // create the logout path
-router.get("/logout", (req, res) => {
-    req.session.destroy(() => {
-        res.clearCookie('jwt')
-        res.redirect("/")
-    })
-})
+router.get("/logout", utilities.handleErrors(acctController.accountLogout))
+
+// build the account edit page
+router.get("/edit/:account_id", utilities.handleErrors(acctController.buildEditAccount))
 
 // register new account
 router.post(
@@ -38,6 +36,21 @@ router.post(
     regValidate.loginRules(),
     regValidate.checkLoginData,
     utilities.handleErrors(acctController.accountLogin)
-  )
+)
 
+// Update account information
+router.post(
+    "/edit-account",
+    regValidate.accountEditRules(),
+    regValidate.checkEditData,
+    utilities.handleErrors(acctController.editAccount)
+)
+
+// Update password
+router.post(
+    "/edit-password",
+    regValidate.accountEditRules(),
+    regValidate.checkEditData,
+    utilities.handleErrors(acctController.editAccount)
+)
 module.exports = router

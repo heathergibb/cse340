@@ -53,8 +53,19 @@ h2 {
 }
 
 #tools {
+  font-family: var(--font-serif);
   font-variant: small-caps;
   font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.welcome-user {
+  font-style: italic;
+  margin: 0;
+  padding: 0 20px;
 }
 
 .header-nav {
