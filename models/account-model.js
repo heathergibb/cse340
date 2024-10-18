@@ -48,9 +48,14 @@ async function getAccountById (account_id) {
     const result = await pool.query(
       'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_id = $1',
       [account_id])
-    return result.rows[0]
+
+    if (result.rows.length > 0) {
+      return { success: true, data: result.rows[0] }
+    } else {
+      return { success: false, error: "No account found." }
+    }
   } catch (error) {
-    return new Error("No account found")
+    return { success: false, error: "Server Error: Cannot get account information" }
   }
 }
 
@@ -65,10 +70,32 @@ async function editAccount(account_id, account_firstname, account_lastname, acco
       account_email,
       account_id
     ])
-    return result.rows[0]
+    if (result.rows.length > 0) {
+      return { success: true, data: result.rows[0] }
+    } else {
+      return { success: false, error: "No account found to update." }
+    }
   } catch (error) {
-    return new Error("Error updating account information")
+    return { success: false, error: "Error updating account" }
   }
 } 
 
-  module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, editAccount }
+async function editPassword(account_id, account_password) {
+  try {
+    const sql = "UPDATE public.account SET account_password = $1 " +
+      "WHERE account_id = $2 RETURNING *"
+    const result = await pool.query(sql, [
+      account_password,
+      account_id
+    ])
+    if (result.rows.length > 0) {
+      return { success: true, data: result.rows[0] }
+    } else {
+      return { success: false, error: "No account found to update." }
+    }
+  } catch (error) {
+    return { success: false, error: "Error updating password" }
+  }
+} 
+
+  module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, editAccount, editPassword }

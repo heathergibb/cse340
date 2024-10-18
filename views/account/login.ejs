@@ -24,13 +24,15 @@
               <input type="password" name="account_password" class="form-input" required
               pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
             </label><br>
-            <ul class="validation-note">
-                Password must be:
+            <div class="validation-note">
+              <p>Password must be:</p>
+              <ul>
                 <li>12 characters in length, min</li>
                 <li>contain at least 1 capital letter</li>
                 <li>contain at least 1 number</li>
                 <li>contain at least 1 special character</li>
-            </ul>
+              </ul>
+            </div>
             </label>
             <input type="submit" value="Login" class="form-button" title="Click here to login">
         </form>

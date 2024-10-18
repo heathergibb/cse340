@@ -83,6 +83,9 @@ const validate = {}
     ]
   }
 
+    /*  **********************************
+  *  Account Edit Validation Rules
+  * ********************************* */
   validate.accountEditRules = () => {
     return [
       // firstname is required and must be string
@@ -111,10 +114,10 @@ const validate = {}
       .withMessage("A valid email is required.")
       .bail()
       .custom(async (account_email, {req}) => {
-        // compare "new email" with previous email
-        
+        // check if email already exists
         const result = await accountModel.getAccountByEmail(account_email)
         if (result) {
+          // if the email exists check that it's not our current email
           if (result.account_id !== parseInt(req.body.account_id)) {
             throw new Error("Email already exists.")
           }
@@ -122,6 +125,27 @@ const validate = {}
       }),
     ]
   }
+
+    /*  **********************************
+  *  Password Validation Rules
+  * ********************************* */
+  validate.passwordRules = () => { 
+    return [
+      // password is required and must be strong password
+      body("account_password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ]
+}
+    
   /* ******************************
  * Check data and return errors or continue to registration
  * ***************************** */
@@ -175,6 +199,27 @@ validate.checkEditData = async (req, res, next) => {
       account_firstname,
       account_lastname,
       account_email,
+    })
+    return
+  }
+  next()
+}
+
+validate.checkPassword = async (req, res, next) => {
+  const { account_id } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+
+    res.render("account/edit-account", {
+      title: "Edit Account",
+      nav,
+      errors,
+      account_id,
+      account_firstname: res.locals.accountData.account_firstname || null,
+      account_lastname: res.locals.accountData.account_lastname || null,
+      account_email: res.locals.accountData.account_email || null,
     })
     return
   }

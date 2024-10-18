@@ -350,14 +350,25 @@ h2 {
 }
 
 /* Register Page */
-
 .validation-note {
+  background-color: var(--color-button);
+  color: var(--color-font);
+}
+
+.validation-note p {
+  padding: 10px;
+  margin-bottom: 0;
+}
+
+.validation-note ul {
+  margin: 0 auto;
   font-family: var(--font-sans);
   font-size: 18px;
   font-weight: bold;
   background-color: var(--color-button);
   color: var(--color-font);
-  padding: 0 20px;
+  padding: 0 0 20px 10px;
+  text-align: left;
 }
 
 .validation-note li {
@@ -367,13 +378,6 @@ h2 {
   font-weight: normal;
 }
 
-.validation-note p {
-  font-size: 16px;
-  text-align: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
 footer {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -381,14 +385,14 @@ footer {
 
 /* Vehicle Management */
 
-.mgmt-link {
+.mgmt {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
 }
 
-.mgmt-link a {
+.mgmt-link {
   font-family: var(--font-sans);
   font-weight: bold;
   font-size: 20px;
@@ -418,6 +422,7 @@ footer {
   text-align: center;
   padding-top: 20px;
   font-size: 28px;
+  margin-top: 0;
 }
 
 #inventoryDisplay th {
@@ -461,6 +466,28 @@ footer {
   color: grey;
 }
 
+#acct-inv-header {
+  margin: 0;
+  padding: 10px;
+}
+
+.acct-link {
+  font-family: var(--font-sans);
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px 20px;
+  margin: 10px 30px;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+.mgmt-text {
+  text-align: center;
+  margin: 0;
+}
 /* Flash Messages */
 
 .notice, .error {
@@ -474,11 +501,8 @@ footer {
 }
 
 .notice {
-  color: orangered;
-}
-
-.error {
   color: red;
+  list-style-type: none;
 } 
 
 @media screen and (min-width: 780px) {

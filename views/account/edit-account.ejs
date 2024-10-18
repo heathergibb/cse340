@@ -18,9 +18,9 @@
         name="account_firstname"
         class="form-input"
         required
-        value="<%= locals.account_firstname %>"
-      /> </label
-    ><br />
+        value="<%= locals.account_firstname %>">
+      </label
+    ><br>
     <label
       >Last Name:
       <input
@@ -28,9 +28,9 @@
         name="account_lastname"
         class="form-input"
         required
-        value="<%= locals.account_lastname %>"
-      /> </label
-    ><br />
+        value="<%= locals.account_lastname %>">
+    </label
+    ><br>
     <label
       >Email:
       <input
@@ -39,19 +39,19 @@
         class="form-input"
         required
         placeholder="Enter a valid email address"
-        value="<%= locals.account_email %>"
-      /> </label>
+        value="<%= locals.account_email %>">
+    </label>
     
     <input
       type="submit"
       value="Update"
       class="form-button"
-      title="Click here to submit registration"
-    />
+      title="Click here to submit registration">
     <input type="hidden" name="account_id" 
     <% if(locals.account_id) { %> value="<%= locals.account_id %> " <% } %>>
   </form>
   <hr>
+
   <form id="password-form" action="/account/edit-password" method="post">
     <h2>Update Password</h2>
     <p>*Note your original password will be changed.</p>
@@ -63,21 +63,23 @@
         class="form-input"
         required
         pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
-      /> </label
-    ><br />
-    <ul class="validation-note">
-      Password must be:
-      <li>12 characters in length, min</li>
-      <li>contain at least 1 capital letter</li>
-      <li>contain at least 1 number</li>
-      <li>contain at least 1 special character</li>
-    </ul>
+      > </label
+    ><br>
+    <div class="validation-note">
+      <p>Password must be:</p>
+      <ul>
+        <li>12 characters in length, min</li>
+        <li>contain at least 1 capital letter</li>
+        <li>contain at least 1 number</li>
+        <li>contain at least 1 special character</li>
+      </ul>
+    </div>
     <input
       type="submit"
       value="Change Password"
       class="form-button"
       title="Click here to change password"
-    />
+    >
     <input type="hidden" name="account_id" 
     <% if(locals.account_id) { %> value="<%= locals.account_id %> " <% } %>>
   </form>

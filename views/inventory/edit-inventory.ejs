@@ -27,7 +27,7 @@
             pattern=".{3,50}"
             placeholder="Min of 3 characters"
             value="<%- locals.inv_make %>"
-          />
+          >
         </label>
         <label
           >Model:
@@ -39,7 +39,7 @@
             pattern=".{3,50}"
             placeholder="Min of 3 characters"
             value="<%- locals.inv_model %>"
-          />
+          >
         </label>
         <label
           >Description:
@@ -59,7 +59,7 @@
             required
             placeholder="/images/vehicles/no-image.png"
             value="<%- locals.inv_image %>"
-          />
+          >
         </label>
         <label
           >Thumbnail Path:
@@ -70,7 +70,7 @@
             required
             placeholder="/images/vehicles/no-image-tn.png"
             value="<%- locals.inv_thumbnail %>"
-          />
+          >
         </label>
         <label
           >Price:
@@ -83,7 +83,7 @@
             min="0"
             placeholder="whole number"
             value="<%= locals.inv_price %>"
-          />
+          >
         </label>
         <label
           >Year:
@@ -96,7 +96,7 @@
             max="9999"
             placeholder="4-digit year"
             value="<%= locals.inv_year %>"
-          />
+          >
         </label>
         <label
           >Miles:
@@ -108,7 +108,7 @@
             min="1"
             placeholder="digits only"
             value="<%= locals.inv_miles %>"
-          />
+          >
         </label>
         <label
           >Color:
@@ -118,7 +118,7 @@
             class="form-input"
             required
             value="<%= locals.inv_color %>"
-          />
+          >
         </label>
         <input
           type="submit"
@@ -127,7 +127,7 @@
           title="Click here to update vehicle"
           id="save-changes-btn"
           disabled
-        />
+        >
         <input type="hidden" name="inv_id"
         <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
         <% } %>>

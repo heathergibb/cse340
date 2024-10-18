@@ -49,8 +49,8 @@ router.post(
 // Update password
 router.post(
     "/edit-password",
-    regValidate.accountEditRules(),
-    regValidate.checkEditData,
-    utilities.handleErrors(acctController.editAccount)
+    regValidate.passwordRules(),
+    regValidate.checkPassword,
+    utilities.handleErrors(acctController.editPassword)
 )
 module.exports = router
