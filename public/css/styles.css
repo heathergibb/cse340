@@ -353,6 +353,7 @@ h2 {
 .validation-note {
   background-color: var(--color-button);
   color: var(--color-font);
+  margin-bottom: 20px;
 }
 
 .validation-note p {
