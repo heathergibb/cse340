@@ -42,6 +42,7 @@ router.get("/delete/:inv_id",
 // add a new classification
 router.post(
     "/add-classification",
+    utilities.checkAuthorized,
     invValidate.classificationRules(),
     invValidate.checkClassificationData,
     utilities.handleErrors(invController.addClassification)
