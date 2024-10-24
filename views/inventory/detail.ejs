@@ -12,6 +12,7 @@
       <h2>Customer Reviews</h2>
 
       <%- reviews %>
+    
 
       <% if (locals.loggedin) { %>
         <h2>Add Your Own Review</h2>
@@ -43,7 +44,7 @@
               class="form-input" 
               required 
               placeholder="Write your review..."
-              value="<%= locals.review_text %>"></textarea>
+              ><%= locals.review_text %></textarea>
           </label>
           <input type="submit" value="Submit Review" class="review-form-button"
             title="Click here to submit your review" id="submit-review-btn">
@@ -55,7 +56,4 @@
         <p class="review=login-note">You must <a class="review-login-link" href="/account/login/">login</a> to write a review.</p>
       <% } %>
     </div>
-
-
-    
-    
+  </div>

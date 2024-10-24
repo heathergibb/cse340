@@ -146,15 +146,15 @@ h2 {
   margin-bottom: 40px;
 }
 
-#reviews-container {
+#reviews-container-home {
   grid-row: 1/2;
 }
 
-#reviews-container ul {
+#reviews-container-home ul {
   padding: 0 0 0 20px;
 }
 
-#reviews-container ul li {
+#reviews-container-home ul li {
   font-family: var(--font-sans);
   font-size: 20px;
   padding-bottom: 20px;
@@ -498,6 +498,7 @@ footer {
 .reviews-container {
   font-family: var(--font-sans);
   font-size: 20px;
+  margin: 0 20px;
 }
 
 #review-form-card {
@@ -598,7 +599,7 @@ footer {
     grid-row: 1/2;
   }
 
-  #reviews-container {
+  #reviews-container-home {
     grid-column: 2/3;
     grid-row: 1/2;
   }
