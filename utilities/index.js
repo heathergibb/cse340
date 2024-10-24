@@ -82,24 +82,72 @@ Util.buildClassificationGrid = async function(data){
     return grid
   }
 
-  Util.buildInventoryDetailGrid = async function(data) {
+  Util.buildInventoryDetailGrid = async function(invData) {
     let grid
     grid = `<div id=details-container>`
     grid += `<div class="image-container">`
-    grid += `<img src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model} on CSE Motors" id="vehicle-img-large">` 
+    grid += `<img src="${invData.inv_image}" alt="Image of ${invData.inv_make} ${invData.inv_model} on CSE Motors" id="vehicle-img-large">` 
     grid += `</div>`
     grid += `<section id="vehicle-details">`
-    grid += `<h2 class="section-title">${data.inv_make} ${data.inv_model} Details</h2>`
+    grid += `<h2 class="section-title">${invData.inv_make} ${invData.inv_model} Details</h2>`
     grid += `<table><tbody>`
-    grid += `<tr><td><span class="details-label">Price: $${new Intl.NumberFormat('en-US').format(data.inv_price)}</span></td></tr>`
+    grid += `<tr><td><span class="details-label">Price: $${new Intl.NumberFormat('en-US').format(invData.inv_price)}</span></td></tr>`
     grid += `<tr><td><span class="details-label">Description: </span>`
-    grid += `<span class="details-text">${data.inv_description}</span></td></tr>`
+    grid += `<span class="details-text">${invData.inv_description}</span></td></tr>`
     grid += `<tr><td><span class="details-label">Color: </span>`
-    grid += `<span class="details-text">${data.inv_color}</span></td></tr>`
+    grid += `<span class="details-text">${invData.inv_color}</span></td></tr>`
     grid += `<tr><td><span class="details-label">Miles: </span>`
-    grid += `<span class="details-text">${new Intl.NumberFormat('en-US').format(data.inv_miles)}</span></td></tr>`
+    grid += `<span class="details-text">${new Intl.NumberFormat('en-US').format(invData.inv_miles)}</span></td></tr>`
     grid += `</tbody></table></section></div>`
     return grid
+  }
+
+  Util.buildInventoryReviewSection = async function(reviewData) {
+    let section = ""
+    // if there is at least one review
+    if (reviewData.length > 0) {
+      section += `<ul class="review-list">`
+
+      reviewData.forEach(review => {
+        // set screenName = the first character of firstname and then lastname
+        const screenName = `${review.account_firstname.charAt(0)}${review.account_lastname}`
+        // format the date to MMMM d yyyy
+        const reviewDate = new Date(review.review_date).toLocaleDateString("en-US", {year: "numeric", month: "long", day: "numeric"})
+        
+        section += `<li class="review">`
+        section += `<p class="review-list-heading"><span id="screen-name">${screenName}</span> wrote on ${reviewDate}:</p>`
+        section += `<hr>`
+        section += `<p class="reviews-text">${review.review_text}</p>`
+        section += `</li>`
+      })
+      section += `</ul>`
+    } else {  //if no reviews exist then add this message
+      section += `<p class="review-first-note">Be the first to write a review.</p>`
+    }
+
+    return section
+  }
+
+  Util.buildAccountReviewList = async function(reviewData) {
+    let reviews = ""
+
+    if (reviewData.length > 0 ) {
+      reviews += `<ol>`
+      // make a list of each review item
+      reviewData.forEach(review => {
+        const vehicle = `${review.inv_year} ${review.inv_make} ${review.inv_model}`
+        // format the date to MMMM d yyyy
+        const reviewDate = new Date(review.review_date).toLocaleDateString("en-US", {year: "numeric", month: "long", day: "numeric"})
+        
+        reviews += `<li>Reviewed the ${vehicle} on ${reviewDate} | `
+        reviews += `<a class="review-link" href="#">Edit</a> | <a class="review-link" href="#">Delete</a></li>`
+      })
+      reviews += `</ol>`
+    } else { //if no reviews post this message
+      reviews += `<p class="mgmt-text">You have not submitted any reviews yet.</p>`
+    }
+
+    return reviews
   }
 
   Util.buildErrorMessage = async function(error) {

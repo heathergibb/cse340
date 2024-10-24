@@ -3,7 +3,7 @@ const express = require("express")
 const router = new express.Router()
 const acctController = require("../controllers/accountController")
 const utilities = require("../utilities/")
-const regValidate = require('../utilities/account-validation')
+const acctValidate = require("../utilities/account-validation")
 
 // build the login form page
 router.get("/login", utilities.handleErrors(acctController.buildLogin))
@@ -28,32 +28,33 @@ router.get("/edit/:account_id",
 // register new account
 router.post(
     "/register",
-    regValidate.registationRules(),
-    regValidate.checkRegData,
+    acctValidate.registationRules(),
+    acctValidate.checkRegData,
     utilities.handleErrors(acctController.registerAccount)
 )
 
 // Process the login attempt
 router.post(
     "/login",
-    regValidate.loginRules(),
-    regValidate.checkLoginData,
+    acctValidate.loginRules(),
+    acctValidate.checkLoginData,
     utilities.handleErrors(acctController.accountLogin)
 )
 
 // Update account information
 router.post(
     "/edit-account",
-    regValidate.accountEditRules(),
-    regValidate.checkEditData,
+    acctValidate.accountEditRules(),
+    acctValidate.checkEditData,
     utilities.handleErrors(acctController.editAccount)
 )
 
 // Update password
 router.post(
     "/edit-password",
-    regValidate.passwordRules(),
-    regValidate.checkPassword,
+    acctValidate.passwordRules(),
+    acctValidate.checkPassword,
     utilities.handleErrors(acctController.editPassword)
 )
+
 module.exports = router

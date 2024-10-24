@@ -65,7 +65,7 @@ router.post(
 
 // delete inventory
 router.post(
-    "/delete", 
+    "/delete-inventory", 
     utilities.handleErrors(invController.deleteInventory))
 
 module.exports = router;

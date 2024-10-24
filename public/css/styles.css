@@ -489,6 +489,68 @@ footer {
   text-align: center;
   margin: 0;
 }
+
+.review-first-note {
+  font-style: italic;
+  background-color: var(--color-contrast-15);
+}
+
+.reviews-container {
+  font-family: var(--font-sans);
+  font-size: 20px;
+}
+
+#review-form-card {
+  font-family: var(--font-sans);
+  width: 100%;
+  font-size: 20px;
+  padding: 20px;
+  background-color: var(--color-contrast-25);
+  color: var(--color-font);
+}
+.reviews-text {
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+#screen-name {
+  font-weight: bold;
+}
+
+.review hr {
+  margin: 0;
+
+}
+.review-list-heading {
+  margin: 0;
+}
+
+.review-form-button {
+  margin: 10px auto;
+  padding: 5px 40px;
+  font-family: var(--font-sans);
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: var(--color-contrast);
+  color: var(--color-light);
+  display: block;
+  cursor: pointer;
+}
+
+#my-reviews-header {
+  text-align: left;
+  padding: 20px 0 0 20px;
+  margin: 0;
+}
+
+.review-link {
+  color: white
+}
+
+.review-link:visited {
+  color: white
+}
 /* Flash Messages */
 
 .notice, .error {

@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const reviewModel = require("../models/review-model")
 const utilities = require("../utilities/")
 
 const invCont = {}
@@ -24,15 +25,23 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build inventory by id view
  * ************************** */
 invCont.buildByInvId = async function (req, res, next) {
+  // const errors = req.query.errors ? JSON.parse(decodeURIComponent(req.query.errors)) : [];
+
   const inv_id = req.params.invId
-  const data = await invModel.getInventoryByInvId(inv_id)
-  const grid = await utilities.buildInventoryDetailGrid(data)
+  const invData = await invModel.getInventoryByInvId(inv_id)
+  const reviewData = await reviewModel.getReviewsByInvId(inv_id)
+  const screen_name = (res.locals.loggedin === 1) ? `${res.locals.accountData.account_firstname.charAt(0)}${res.locals.accountData.account_lastname}` : ""
+  const grid = await utilities.buildInventoryDetailGrid(invData)
+  const reviews = await utilities.buildInventoryReviewSection(reviewData)
   let nav = await utilities.getNav()
-  const vehicleTitle = `${data.inv_year} ${data.inv_make} ${data.inv_model}`
+  const vehicleTitle = `${invData.inv_year} ${invData.inv_make} ${invData.inv_model}`
   res.render("./inventory/detail", {
     title: vehicleTitle,
     nav,
     grid,
+    screen_name,
+    reviews,
+    inv_id,
     errors: null,
   })
 }

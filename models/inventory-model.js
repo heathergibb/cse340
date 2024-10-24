@@ -34,11 +34,14 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
+/* ***************************
+ *  Get all inventory details by inv_id
+ * ************************** */
 async function getInventoryByInvId(inv_id) {
   try {
     const data = await pool.query(
-      `SELECT * FROM public.inventory AS i
-      WHERE i.inv_id = $1`,
+      `SELECT * FROM public.inventory
+      WHERE inv_id = $1`,
       [inv_id]
     )
     return data.rows[0] //Returns one row with vehicle details
@@ -142,4 +145,12 @@ async function deleteInventory(inv_id)
     new Error("Delete Inventory Error")
   }
 }
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByInvId, addClassification, addInventory, editInventory, isClassificationValid, deleteInventory };
+module.exports = { 
+  getClassifications, 
+  getInventoryByClassificationId, 
+  getInventoryByInvId, 
+  addClassification, 
+  addInventory, 
+  editInventory, 
+  isClassificationValid, 
+  deleteInventory };
