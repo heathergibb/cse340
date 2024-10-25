@@ -20,8 +20,7 @@ router.post(
     "/add-review",
     reviewValidate.reviewRules(),
     reviewValidate.checkNewReviewData,
-    utilities.handleErrors(reviewController.addReview)
-)
+    utilities.handleErrors(reviewController.addReview))
 
 // update review
 router.post(

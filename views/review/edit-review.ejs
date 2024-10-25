@@ -10,7 +10,6 @@
 
     <div class="form-card">
         <form id="edit-review-form" action="/review/edit-review" method="post">
-            <!-- <p>*All fields are required</p>  -->
             <label>Review Date: 
                 <input type="text" 
                   name="review_date" 
@@ -23,6 +22,7 @@
                 <textarea name="review_text" 
                   class="form-input" 
                   required 
+                  minlength="10"
                   placeholder="Write your review..."
                   ><%= review_text %></textarea>
               </label>
