@@ -76,6 +76,7 @@ reviewCont.buildDeleteReview = async function(req, res, next) {
     const addResult = await reviewModel.editReview(review_id, review_text)
     
     if (addResult) {
+        req.flash("notice", "The review has been successfully updated.")
         res.redirect("/account")
     } else {
         req.flash("notice", "Sorry the edit failed.")
