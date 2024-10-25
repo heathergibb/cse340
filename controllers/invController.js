@@ -25,8 +25,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build inventory by id view
  * ************************** */
 invCont.buildByInvId = async function (req, res, next) {
-  // const errors = req.query.errors ? JSON.parse(decodeURIComponent(req.query.errors)) : [];
-
   const inv_id = req.params.invId
   const invData = await invModel.getInventoryByInvId(inv_id)
   const reviewData = await reviewModel.getReviewsByInvId(inv_id)
@@ -41,6 +39,7 @@ invCont.buildByInvId = async function (req, res, next) {
     grid,
     screen_name,
     reviews,
+    review_text: "",
     inv_id,
     errors: null,
   })

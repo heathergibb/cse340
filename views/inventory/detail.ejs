@@ -28,14 +28,13 @@
 
         <div id="review-form-card">
 
-          <form id="review-form" action="/review/add" method="POST">
-          <p class="reviews-text">*All fields are required</p>
+          <form id="review-inventory-form" action="/review/add-review" method="POST">
+          <!-- <p class="reviews-text">*All fields are required</p> -->
           <label>Screen Name: 
             <input type="text" 
               name="screen_name" 
               class="form-input" 
               readonly
-              disabled
               value="<%- screen_name %>"
             >
           </label>
@@ -44,7 +43,7 @@
               class="form-input" 
               required 
               placeholder="Write your review..."
-              ><%= locals.review_text %></textarea>
+              ><%= review_text %></textarea>
           </label>
           <input type="submit" value="Submit Review" class="review-form-button"
             title="Click here to submit your review" id="submit-review-btn">

@@ -160,27 +160,27 @@ validate.checkEditInventoryData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         try {
-        let nav = await utilities.getNav()
-        const classList = await utilities.buildClassificationList(classification_id)
-        const invName = `Edit: ${inv_make} ${inv_model}`
-        res.render("./inventory/edit-inventory", {
-            errors,
-            title: invName, 
-            nav,
-            classList,
-            classification_id,
-            inv_id,
-            inv_make,
-            inv_model,
-            inv_description,
-            inv_image,
-            inv_thumbnail,
-            inv_price,
-            inv_year,
-            inv_miles,
-            inv_color,
-        })
-        return
+            let nav = await utilities.getNav()
+            const classList = await utilities.buildClassificationList(classification_id)
+            const invName = `Edit: ${inv_make} ${inv_model}`
+            res.render("./inventory/edit-inventory", {
+                errors,
+                title: invName, 
+                nav,
+                classList,
+                classification_id,
+                inv_id,
+                inv_make,
+                inv_model,
+                inv_description,
+                inv_image,
+                inv_thumbnail,
+                inv_price,
+                inv_year,
+                inv_miles,
+                inv_color,
+            })
+            return
         } catch (err) {
             console.error("Error rendering page:", err)
             res.status(500).send("Server error while rendering the page.")

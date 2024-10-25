@@ -140,11 +140,11 @@ Util.buildClassificationGrid = async function(data){
         const reviewDate = new Date(review.review_date).toLocaleDateString("en-US", {year: "numeric", month: "long", day: "numeric"})
         
         reviews += `<li>Reviewed the ${vehicle} on ${reviewDate} | `
-        reviews += `<a class="review-link" href="#">Edit</a> | <a class="review-link" href="#">Delete</a></li>`
+        reviews += `<a class="review-link" href="/review/edit/${review.review_id}">Edit</a> | <a class="review-link" href="/review/delete/${review.review_id}">Delete</a></li>`
       })
       reviews += `</ol>`
     } else { //if no reviews post this message
-      reviews += `<p class="mgmt-text">You have not submitted any reviews yet.</p>`
+      reviews += `<p class="mgmt-text">You have no reviews to display.</p>`
     }
 
     return reviews

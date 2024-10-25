@@ -493,6 +493,7 @@ footer {
 .review-first-note {
   font-style: italic;
   background-color: var(--color-contrast-15);
+  padding-left: 20px;
 }
 
 .reviews-container {

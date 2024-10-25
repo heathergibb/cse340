@@ -133,7 +133,7 @@ try {
 }
 
 /* ***************************
- *  Edit inventory
+ *  Delete inventory
  * ************************** */
 async function deleteInventory(inv_id)
   {

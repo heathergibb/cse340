@@ -11,7 +11,7 @@ async function getReviewByReviewId(review_id) {
     )
     return data.rows[0]
   } catch (error) {
-    console.error("getReviewsByReviewId error " + error)
+    return error.message
   }
 }
 
@@ -31,7 +31,7 @@ async function getReviewsByInvId(inv_id) {
     )
     return data.rows
   } catch (error) {
-    console.error("getReviewsByInvId error " + error)
+    return error.message
   }
 }
 
@@ -49,19 +49,37 @@ async function getReviewsByAccountId(account_id) {
     )
     return data.rows
   } catch (error) {
-    console.error("getReviewsByAccountId error " + error)
+    return error.message
   }
 }
 
 /* ***************************
-  *  Get all reviews by account_id
+  *  insert new review
   * ************************** */
  async function addReview(review_text, inv_id, account_id) {
   try {
     const sql = `INSERT INTO review (review_text, inv_id, account_id) VALUES ($1, $2, $3) RETURNING *`
     return await pool.query(sql, [review_text, inv_id, account_id])
   } catch (error) {
-    console.error("addReview error " + error)
+    return error.message
+  }
+ }
+
+ async function editReview(review_id, review_text) {
+  try {
+    const sql = `UPDATE review SET review_text = $1 WHERE review_id = $2 RETURNING *`
+    return await pool.query(sql, [review_text, review_id])
+  } catch (error) {
+    return error.message
+  }
+ }
+
+ async function deleteReview(review_id) {
+  try {
+    const sql = `DELETE FROM review WHERE review_id = $1`
+    return await pool.query(sql, [review_id])
+  } catch (error) {
+    return error.message
   }
  }
 
@@ -69,5 +87,7 @@ async function getReviewsByAccountId(account_id) {
     getReviewByReviewId,
     getReviewsByInvId,
     getReviewsByAccountId,
-    addReview
+    addReview,
+    editReview, 
+    deleteReview
   };
