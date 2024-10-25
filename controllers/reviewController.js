@@ -50,7 +50,7 @@ reviewCont.buildEditReview = async function (req, res, next) {
  * ************************** */
 reviewCont.buildDeleteReview = async function(req, res, next) {
     const review_id = parseInt(req.params.review_id)
-    let nav = utilities.getNav()
+    let nav = await utilities.getNav()
     const reviewData = await reviewModel.getReviewByReviewId(review_id)
     
     if (reviewData) {
